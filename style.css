@@ -1,0 +1,25 @@
+.info1{
+    width: 100%;
+    font-size: 20px;
+    box-shadow: 5px 5px 5px gray;
+    
+}
+.note{
+    color:black ;
+}
+.info2{
+    word-spacing: 10px;
+}
+.footer{
+    background-color: gray;
+    color: white;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    font-family: 'Gloria Hallelujah', cursive;
+font-family: 'Yanone Kaffeesatz', sans-serif;
+bottom:0;
+font-size: 25px;
+line-height:3;
+letter-spacing: 5px;
+}
