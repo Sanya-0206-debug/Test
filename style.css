@@ -1,25 +1,40 @@
-.info1{
-    width: 100%;
+body
+{
+  color: white;
+  background-color: gray
+}
+span
+{
+  font-size: 30px;
+}
+#camera , #result
+{
+  border: 2px dashed black;
+  width: 350px;
+  height: 300px; 
+}
+#result_Vehicle_name ,#result_Vehicle_name2  
+{
+  color: black;
+}
+.Vehicle_name
+{
+  font-size: 40px;
+}
+.Vehicle
+{
+  font-size:48px;
+}
+label{
     font-size: 20px;
-    box-shadow: 5px 5px 5px gray;
-    
+    color: cornflowerblue;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: white;
 }
-.note{
-    color:black ;
+#heading{
+    font-size: 40px;
 }
-.info2{
-    word-spacing: 10px;
-}
-.footer{
-    background-color: gray;
-    color: white;
-    position: fixed;
-    width: 100%;
-    text-align: center;
-    font-family: 'Gloria Hallelujah', cursive;
-font-family: 'Yanone Kaffeesatz', sans-serif;
-bottom:0;
-font-size: 25px;
-line-height:3;
-letter-spacing: 5px;
+#info{
+  font-size: 30;
 }

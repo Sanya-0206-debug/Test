@@ -1,34 +1,55 @@
-noseX=0;
-noseY=0;
-diffrence = 0;
-rightWristX = 0;
-LeftWristX = 0;
-function setup(){
-    video = createCapture(VIDEO);
-    video.size(550,500);
-    canvas=createCanvas(550,550);
-    canvas.position(560,150);
-    poseNet = ml5.poseNet(video, modelLoaded);
-    poseNet.on('pose', gotPoses);
-}
-function modelLoaded(){
-    console.log('Model Is Loaded')
-}
-function draw(){
-    background('#D3D3D3')
-    fill('#ff0000');
-    stroke('#000000');
-    square(noseX, noseY, diffrence);
-    document.getElementById('square_side').innerHTML = "Width and Height of the Square will be =" + diffrence+"px";
-}
-function gotPoses(results){
-    if(results.length > 0){
-    console.log(results);
-    noseX= results[0].pose.nose.x;
-    noseY= results[0].pose.nose.y;
-    leftWristX= results[0].pose.leftWrist.x;
-    rightWristX= results[0].pose.rightWrist.x;
-    diffrence =  floor(leftWristX - rightWristX);
-    }
+prediction1=""
 
+Webcam.set({
+    width:350,
+    height:300,
+    image_format:'png',
+    png_quality: 99,
+    flip_horizontal:false
+});
+camera=document.getElementById("camera");
+
+Webcam.attach('#camera');
+function take_snapshot()
+{
+    Webcam.snap(function(data_uri)
+    {
+        document.getElementById("result").innerHTML='<img id="captured_image" src="'+data_uri+'"/>';
+        console.log(data_uri);
+    });
+};
+console.log('ml5 version:', ml5.version );
+classifier= ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/mENR2Hq2V/model.json',modelLoded);
+
+function modelLoded(){
+    console.log('Model Loded!');
+}
+function check()
+{
+    img=document.getElementById('captured_image');
+    classifier.classify(img, gotResult);
+}
+function gotResult(error, result)
+{
+    if (error) {
+        console.error(error);
+    }
+    else{
+        console.log(result);
+        document.getElementById('result_Vehicle_name').innerHTML = result[0].label;
+        prediction1=result[0].label;
+        speak();
+        if(result[0].label=='Jedi Interceptor Type:Speed Jet'){
+        }
+        if(result[0].label=='Jeid Starfighter Type:Starfighter'){
+        }
+        if(result[0].label=='F9 Type Speed Jet'){
+        }
+    }
+}
+function speak(){
+    var synth = window.speechSynthesis;
+    speak_data_1 = "The first prediction is" + prediction1;
+    var utterthis = new SpeechSynthesisUtterance(speak_data_1);
+    synth.speak(utterthis);
 }
